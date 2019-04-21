@@ -1,5 +1,6 @@
 for i in `ls /var/local`
 do
+	echo "Working on $i"
 	cp /var/local/$i test.data
-	exit
+	python batchwrite.py
 done
