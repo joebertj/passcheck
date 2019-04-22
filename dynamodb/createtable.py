@@ -17,7 +17,7 @@ table = ddb.create_table(
     ],
 	ProvisionedThroughput={
 		'ReadCapacityUnits': 25,
-		'WriteCapacityUnits': 6365
+		'WriteCapacityUnits': 25
 	}
 )
 
