@@ -1,8 +1,7 @@
 cd $1
-datadir=~/rawdata
+datadir=$2
 for i in `ls $datadir`
 do
 	echo "Working on $i"
-	cp $datadir/$i ../test.data
-	python batchwrite.py
+	python batchwrite.py $datadir/$i
 done

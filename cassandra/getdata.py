@@ -1,6 +1,6 @@
 from cassandra.cluster import Cluster
 
-cluster = Cluster()
+cluster = Cluster(['34.236.205.143'])
 session = cluster.connect('user')
 pstmt = session.prepare("SELECT * FROM password WHERE shaone=?")
 row = session.execute(pstmt, ["00000000DD7F2A1C68A35673713783CA390C9E93"])[0]

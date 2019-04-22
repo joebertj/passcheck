@@ -4,7 +4,7 @@ Check the strength of a password given data from major breaches. There are 55150
 
 This started as DynamoDB only but it is too slow for me. It is an opportunity to casually compare with Cassandra using same data. Python filenames are kept the same for similar function.
 
-Use `load.sh` to import data passing `dynamodb` or `cassandra` as parameter e.g `./load.sh cassandra`.
+Use `load.sh` to import data passing `dynamodb` or `cassandra` as first parameter and the directory of the raw data as the second parameter e.g `./load.sh cassandra ~/rawdata`.
 
 ## DynamoDB Local using Docker
 Uses python and boto3 module to connect to a Local DynamoDB running on Docker.
