@@ -3,7 +3,7 @@ from itertools import islice
 
 ddb = boto3.resource('dynamodb', endpoint_url='http://localhost:9000')
 table = ddb.Table('password')
-f =  open('test.data','r')
+f =  open('../test.data','r')
 line = f.readline()
 #with table.batch_writer(overwrite_by_pkeys=['shaone']) as batch:
 with table.batch_writer() as batch:
