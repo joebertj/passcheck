@@ -1,11 +1,12 @@
 from cassandra.cluster import Cluster, BatchStatement
+import sys
 
 cluster = Cluster(['34.236.205.143'])
 session = cluster.connect('user')
 pstmt = session.prepare("INSERT INTO password (shaone,count) VALUES (?,?)")
 i = 0
 batch = BatchStatement()
-f =  open('../test.data','r')
+f =  open(sys.argv[1],'r')
 line = f.readline()
 while line:
     i += 1
