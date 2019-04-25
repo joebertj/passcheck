@@ -33,3 +33,6 @@ database=databasename
 user=myusername
 password=mypassword
 ```
+
+## Checking a password against the database
+Use `checkpass.sh` to check a password against the database. The first parameter is the same as `load.sh`. The second parameter is the password itself. e.g. `./checkpass.sh cassandra god`

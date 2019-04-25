@@ -2,8 +2,8 @@ import psycopg2
 from config import config
 import sys
 
-def select_shaone():
-    sql = "SELECT count from password WHERE shaone='E814E2A504944BA2979456BD502EFCDEBD97BC64'"
+def select_shaone(shaone):
+    sql = "SELECT count from password WHERE shaone=%s"
     conn = None
     try:
         # read database configuration
@@ -13,7 +13,7 @@ def select_shaone():
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.execute(sql)
+        cur.execute(sql,(shaone,))
         row = cur.fetchone()
         while row is not None:
             print(row[0])
@@ -29,4 +29,5 @@ def select_shaone():
             conn.close()
 
 if __name__ == '__main__':
-    select_shaone()
+    shaone = sys.argv[1]
+    select_shaone(shaone)
