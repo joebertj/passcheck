@@ -13,7 +13,7 @@ while line:
     (shaone,count) = line.split(':')
     batch.add(pstmt, (shaone,int(count)))
     line = f.readline()
-    if i==4:
+    if i==100:
         i = 0
         session.execute(batch)
         batch = BatchStatement()
