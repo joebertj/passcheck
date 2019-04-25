@@ -12,7 +12,7 @@ To disable InMemory option:
 `docker run -d -v ~/dynamodbdata:/home/dynamodblocal/data -p 9000:8000 amazon/dynamodb-local -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -dbPath ./data`
 
 ## Apache Cassandra
-Keyspace is unique for Cassandra. Think of it as "Database" in MySQL.
+Keyspace is unique for Cassandra. Think of it as "Database" in PostgreSQL.
 
 ## PostgreSQL
 1. Switch to postgres user
