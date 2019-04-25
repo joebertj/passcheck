@@ -2,9 +2,8 @@ import psycopg2
 from config import config
 import sys
 
-def insert_passwords(passwords):
-    """ insert multiple passwords into the passwords table  """
-    sql = "INSERT INTO password(shaone,count) VALUES(%s,%s) ON CONFLICT (shaone) DO NOTHING"
+def select_shaone():
+    sql = "SELECT count(*) from password"
     conn = None
     try:
         # read database configuration
@@ -14,7 +13,11 @@ def insert_passwords(passwords):
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
-        cur.executemany(sql,passwords)
+        cur.execute(sql)
+        row = cur.fetchone()
+        while row is not None:
+            print(row[0])
+            row = cur.fetchone()
         # commit the changes to the database
         conn.commit()
         # close communication with the database
@@ -26,15 +29,4 @@ def insert_passwords(passwords):
             conn.close()
 
 if __name__ == '__main__':
-    f =  open(sys.argv[1],'r')
-    line = f.readline()
-    lines = []
-    while line:
-        (shaone,count) = line.split(':')
-        lines.append((shaone,int(count)))
-        if len(lines)==1000000:
-            # insert multiple passwords
-            insert_passwords(lines)
-            lines = []
-        line = f.readline()
-    f.close()
+    select_shaone()
