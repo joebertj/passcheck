@@ -1,7 +1,11 @@
 from cassandra.cluster import Cluster
+import sys
 
-cluster = Cluster(['34.236.205.143'])
+cluster = Cluster()
 session = cluster.connect('user')
 pstmt = session.prepare("SELECT * FROM password WHERE shaone=?")
-row = session.execute(pstmt, ["00000000DD7F2A1C68A35673713783CA390C9E93"])[0]
-print(row)
+shaone = []
+shaone.append(sys.argv[1])
+rows = session.execute(pstmt, shaone)
+for row in rows:
+    print(row)

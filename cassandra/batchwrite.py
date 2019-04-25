@@ -1,7 +1,7 @@
 from cassandra.cluster import Cluster, BatchStatement
 import sys
 
-cluster = Cluster(['34.236.205.143'])
+cluster = Cluster()
 session = cluster.connect('user')
 pstmt = session.prepare("INSERT INTO password (shaone,count) VALUES (?,?)")
 i = 0
@@ -13,7 +13,7 @@ while line:
     (shaone,count) = line.split(':')
     batch.add(pstmt, (shaone,int(count)))
     line = f.readline()
-    if i==100:
+    if i==2500:
         i = 0
         session.execute(batch)
         batch = BatchStatement()
