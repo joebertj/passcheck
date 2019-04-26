@@ -32,9 +32,6 @@ if __name__ == '__main__':
     while line:
         (shaone,count) = line.split(':')
         lines.append((shaone,int(count)))
-        if len(lines)==1000000:
-            # insert multiple passwords
-            insert_passwords(lines)
-            lines = []
         line = f.readline()
+    insert_passwords(lines)
     f.close()

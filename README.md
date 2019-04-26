@@ -35,6 +35,8 @@ To disable InMemory option:
 Keyspace is unique for Cassandra. Think of it as "Database" in PostgreSQL.
 
 ## PostgreSQL
+Uses psycopg2 module.  
+
 1. Switch to postgres user
 `sudo su postgres`
 2. Enter the the interactive terminal for working with Postgres
@@ -45,7 +47,7 @@ Keyspace is unique for Cassandra. Think of it as "Database" in PostgreSQL.
 `CREATE USER myusername WITH PASSWORD 'mypassword';`
 5. Grant privileges on database to user
 `GRANT ALL PRIVILEGES ON DATABASE "databasename" to myusername;`
-6. Create file `database.ini` in postgresql folder with the following contents:
+6. Create file `database.ini` with the following contents:
 ```
 [postgresql]
 host=localhost
@@ -53,6 +55,7 @@ database=databasename
 user=myusername
 password=mypassword
 ```
+Run your scripts in the same directory where database.ini is.
 
 ## Checking a password against the database
 Use `checkpass.sh` to check a password against the database. The first parameter is the same as `load.sh`. The second parameter is the password itself. e.g. `./checkpass.sh cassandra god`
