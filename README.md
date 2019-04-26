@@ -1,10 +1,12 @@
 # passcheck
 
-Check the strength of a password given data from major breaches. There are 551509767 items in total.
+Check the strength of a password given data from major breaches.
 
 This started as DynamoDB only but it is too slow for me. It is an opportunity to casually compare with Cassandra using same data. PostgreSQL was added eventually. Python filenames are kept the same for similar function.
 
 Use `load.sh` to import data passing `dynamodb`, `cassandra` or `postgresql`  as first parameter and the directory of the raw data as the second parameter e.g `./load.sh cassandra ~/rawdata`.
+
+Extract password data from [haveibeenpwned](https://haveibeenpwned.com/Passwords) on the rawdata folder. There are 551509767 items in total.
 
 ## DynamoDB Local using Docker
 Uses python and boto3 module to connect to a DynamoDB.
