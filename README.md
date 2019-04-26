@@ -8,7 +8,7 @@ Use `load.sh` to import data passing `dynamodb`, `cassandra` or `postgresql`  as
 
 Extract password data from [haveibeenpwned](https://haveibeenpwned.com/Passwords) on the rawdata folder. There are 551509767 items in total. For me, I `split` the data so it is easy to resume and not waste time on already completed data e.g. `split -l 1000000 <filename> <prefix>`.
 
-## DynamoDB Local using Docker
+## DynamoDB
 Uses python and boto3 module to connect to a DynamoDB.
 
 ### AWS DynamodDB
@@ -34,7 +34,7 @@ To disable InMemory option:
 `docker run -d -v ~/dynamodbdata:/home/dynamodblocal/data -p 9000:8000 amazon/dynamodb-local -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -dbPath ./data`
 
 ## Apache Cassandra
-Keyspace is unique for Cassandra. Think of it as "Database" in PostgreSQL.
+Keyspace is unique for Cassandra. Think of it as "Database" in PostgreSQL. Local default installation should work.
 
 ## PostgreSQL
 Uses psycopg2 module.  
