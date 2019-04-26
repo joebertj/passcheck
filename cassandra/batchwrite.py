@@ -18,4 +18,5 @@ while line:
         session.execute(batch)
         batch = BatchStatement()
 f.close()
-#551509767
+if i > 0:
+    session.execute(batch)

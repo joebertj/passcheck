@@ -1,11 +1,14 @@
 import boto3
+import sys
 
+shaone = sys.argv[1]
 ddb = boto3.resource('dynamodb')
 table = ddb.Table('password')
 response = table.get_item(
     Key={
-        'shaone': '00000000DD7F2A1C68A35673713783CA390C9E93',
+        'shaone': shaone,
     }
 )
-item = response['Item']
-print(item)
+if 'Item' in response:
+    item = response['Item']
+    print(item)

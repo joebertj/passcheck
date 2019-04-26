@@ -18,4 +18,3 @@ with table.batch_writer() as batch:
 		)
 		line = f.readline()
 f.close()
-#551509767

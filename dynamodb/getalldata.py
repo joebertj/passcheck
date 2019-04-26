@@ -1,8 +1,8 @@
 import boto3
 
-ddb = boto3.resource('dynamodb', endpoint_url='http://localhost:9000')
+ddb = boto3.resource('dynamodb')
 table = ddb.Table('password')
 response = table.scan()
-item = response['Items']
-#print(item)
-print(len(item))
+if 'Items' in response:
+    items = response['Items']
+    print(len(items))

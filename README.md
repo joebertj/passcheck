@@ -7,7 +7,27 @@ This started as DynamoDB only but it is too slow for me. It is an opportunity to
 Use `load.sh` to import data passing `dynamodb`, `cassandra` or `postgresql`  as first parameter and the directory of the raw data as the second parameter e.g `./load.sh cassandra ~/rawdata`.
 
 ## DynamoDB Local using Docker
-Uses python and boto3 module to connect to a Local DynamoDB running on Docker.
+Uses python and boto3 module to connect to a DynamoDB.
+
+### AWS DynamodDB
+- Install `awscli` e.g. `sudo apt install awscli` for Ubuntu/Debian
+- Install boto3 e.g. `sudo apt install python-boto3`
+
+Use this code for client and resource:
+```
+boto3.client('dynamodb')
+boto3.resource('dynamodb')
+```
+
+### Local DynamoDB running on Docker
+
+I used port 9000. Default is 8000.
+
+Use this code for client and resource:
+```
+boto3.client('dynamodb', endpoint_url='http://localhost:9000')
+boto3.resource('dynamodb', endpoint_url='http://localhost:9000')
+```
 To disable InMemory option:
 `docker run -d -v ~/dynamodbdata:/home/dynamodblocal/data -p 9000:8000 amazon/dynamodb-local -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -sharedDb -dbPath ./data`
 
