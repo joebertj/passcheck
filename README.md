@@ -6,7 +6,7 @@ This started as DynamoDB only but it is too slow for me. It is an opportunity to
 
 Use `load.sh` to import data passing `dynamodb`, `cassandra` or `postgresql`  as first parameter and the directory of the raw data as the second parameter e.g `./load.sh cassandra ~/rawdata`.
 
-Extract password data from [haveibeenpwned](https://haveibeenpwned.com/Passwords) on the rawdata folder. There are 551509767 items in total. For me, I `split` the data so it is easy to resume and not waste time on already completed data e.g. `split -l 1000000 <filename> <prefix>`.
+Extract password data from [haveibeenpwned](https://haveibeenpwned.com/Passwords) on the rawdata folder. There are 551509767 items in total. For me, I `split` the data so it is easy to resume and not waste time on already completed data if the connection or script is interrupted e.g. `split -l 1000000 <filename> <prefix>`. Since the second parameter is actually a directory then the script will load all files placed there. You can generate your own data files as long as the format is colon (:) separated with the first value a SHA1 of a password and the second value the frequency (count of password breach) .e.g. 7C4A8D09CA3762AF61E59520943DC26494F8941B:123456
 
 ## DynamoDB
 Uses python and boto3 module to connect to a DynamoDB.
