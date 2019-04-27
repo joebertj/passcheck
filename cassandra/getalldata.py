@@ -1,7 +1,7 @@
 from cassandra.cluster import Cluster
+from cassandra.cluster import ExecutionProfile
 
 cluster = Cluster()
 session = cluster.connect('user')
-pstmt = session.prepare("SELECT count(*) FROM password")
-row = session.execute(pstmt)[0]
+row = session.execute("SELECT count(*) FROM password")
 print(row)

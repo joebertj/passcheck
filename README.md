@@ -37,7 +37,7 @@ To disable InMemory option:
 Keyspace is unique for Cassandra. Think of it as "Database" in PostgreSQL. Local default installation should work.
 
 ## PostgreSQL
-Uses psycopg2 module.  
+Uses psycopg2 and configreader module. To install, `sudo apt install python-psycopg2 python-configreader`.
 
 1. Switch to postgres user
 `sudo su postgres`
