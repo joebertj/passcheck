@@ -1,7 +1,10 @@
 from cassandra.cluster import Cluster
 import sys
+from cassandra.auth import PlainTextAuthProvider
 
-cluster = Cluster()
+auth_provider = PlainTextAuthProvider(
+                username='cassandra', password='cassandra')
+cluster = Cluster(auth_provider=auth_provider)
 session = cluster.connect('user')
 pstmt = session.prepare("SELECT * FROM password WHERE shaone=?")
 shaone = []
