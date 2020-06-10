@@ -1,22 +1,24 @@
-from cassandra.cluster import Cluster, BatchStatement
-import sys
+#!/usr/bin/env python3
 
-cluster = Cluster()
+from cassandra import ConsistencyLevel
+from cassandra.cluster import Cluster
+from cassandra.query import BatchType, SimpleStatement
+from ssl import SSLContext, PROTOCOL_TLSv1, CERT_REQUIRED
+from cassandra.auth import PlainTextAuthProvider
+import sys, os
+
+ssl_context = SSLContext(PROTOCOL_TLSv1)
+ssl_context.load_verify_locations('./AmazonRootCA1.pem')
+ssl_context.verify_mode = CERT_REQUIRED
+auth_provider = PlainTextAuthProvider(username=os.getenv('USER'), password=os.getenv('PASS'))
+cluster = Cluster(['cassandra.us-west-2.amazonaws.com'], ssl_context=ssl_context, auth_provider=auth_provider, port=9142)
 session = cluster.connect('user')
 pstmt = session.prepare("INSERT INTO password (shaone,count) VALUES (?,?)")
-i = 0
-batch = BatchStatement()
+pstmt.consistency_level = ConsistencyLevel.LOCAL_QUORUM 
 f =  open(sys.argv[1],'r')
 line = f.readline()
 while line:
-    i += 1
     (shaone,count) = line.split(':')
-    batch.add(pstmt, (shaone,int(count)))
+    session.execute(pstmt, (shaone, int(count)))
     line = f.readline()
-    if i==2500:
-        i = 0
-        session.execute(batch)
-        batch = BatchStatement()
 f.close()
-if i > 0:
-    session.execute(batch)
